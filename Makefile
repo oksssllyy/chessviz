@@ -1,2 +1,2 @@
-main: main.c
-    gcc -Wall -o main main.c
+board: board.c
+	gcc -Wall -o board board.c
