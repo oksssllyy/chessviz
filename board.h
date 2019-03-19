@@ -4,6 +4,7 @@
 struct Board {
   char board[8][8];
 };
+
 struct Board point;
 
 char letter[8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
