@@ -17,4 +17,5 @@ void print_board(struct Board point) {
 
   printf("\n");
 }
+
 #endif //PRINT_BOARD_H
