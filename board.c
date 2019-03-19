@@ -1,6 +1,6 @@
+#include "board.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "board.h"
 #include "Print_board.h"
 
 void mk_board(int i, int j) {
