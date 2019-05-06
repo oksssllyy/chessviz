@@ -1,14 +1,20 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-struct Board {
-  char board[8][8];
-};
+  void input_data(int side); //side: 1 - белые, 2 - чёрные фигуры;
 
-struct Board point;
+  int charTOint();
 
-char letter[8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+  void move_figure();
 
-void mk_board();
+  int white_figure();
+
+  int black_figure();
+
+  void log_steps();
+
+  int checkwin();
+
+  void pawn_transformation();
 
 #endif //BOARD_H
