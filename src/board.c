@@ -1,85 +1,76 @@
 #include "board.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "Print_board.h"
 
-void mk_board(int i, int j) {
-  for (i = 0; i < 8; i++) {
-    char cell = ' ';
-    switch (i) {
-      case 0:
-      case 7:
-        cell = 'R';
-        break;
-      case 1:
-      case 6:
-        cell = 'N';
-        break;
-      case 2:
-      case 5:
-        cell = 'B';
-        break;
-      case 3:
-        cell = 'Q';
-        break;
-      case 4:
-        cell = 'K';
-        break;
-      default:
-        break;
-    }
-    point.board[0][i] = cell;
-  }
+char input[6];
+int x1, y1, x2, y2;
 
-  for (i = 0; i < 8; i++) {
-    point.board[1][i] = 'P';
-  }
-
-  for (i = 0; i < 8; i++) {
-    for (j = 2; j < 6; j++) {
-      point.board[j][i] = ' ';
-    }
-  }
-
-  for (i = 0; i < 8; i++) {
-    char cell = ' ';
-    switch (i) {
-      case 0:
-      case 7:
-        cell = 'r';
-        break;
-      case 1:
-      case 6:
-        cell = 'n';
-        break;
-      case 2:
-      case 5:
-        cell = 'b';
-        break;
-      case 3:
-        cell = 'q';
-        break;
-      case 4:
-        cell = 'k';
-        break;
-      default:
-        break;
-    }
-    point.board[7][i] = cell;
-  }
-
-  for (i = 0; i < 8; i++) {
-    point.board[6][i] = 'p';
-  }
-
-  print_board(point);
+void infor(){
+  printf("      Шахматы\n\n\n");
+  printf("Обычный ход (пешка): A2-A3\n
+          Взятие фигуры (пешкой): A4xB5\n\n");
+  printf("Пример хода белых фигур:\nC2-C4 
+          (Ходы белых фигур осуществляются вводом большых букв.)\n
+          Пример хода чёрных фигур:\nс7-с5 
+          (Ходы чёрных фигур осуществляются вводом маленьких букв.\n\n");
+  printf("Для вывода на экран данной информации введите в любой момент 'infor'.\n")
 }
 
-int main()
-{
-
-    int i = 0;
-    int j = 0;
-
-    mk_board(i, j);
+void input_data(side) {
+  while (1) {
+    while (1) {
+      fgets(input, 6, stdin);
+      if (input == 'infor') {
+        infor();
+      }
+      if (charTOint(input)){
+        break;
+      }
+      printf("Произошла ошибочка. 
+              Попробуйте ввести заново, уважаемый шамхматист :)")
+    }
+    if (side == 1){
+      if (white_figure()) {
+        break;
+      } else {
+        printf("Произошла ошибочка. 
+                Попробуйте ввести заново, уважаемый шамхматист :)");
+      }
+    }
+    if (side == 2){
+      if (black_figure()) {
+        break;
+      } else {
+        printf("Произошла ошибочка. 
+                Попробуйте ввести заново, уважаемый шамхматист :)");
+      }
+    } 
+  }
 }
+
+int charTOint(input) {
+
+  char input[6];
+
+  fgets(input,6,stdin);
+  int x1 = (int)input[0] - 'A';
+  int y1 = (int)input[1] - '1';
+  int x2 = (int)input[3] - 'A';
+  int y2 = (int)input[4] - '1';
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
