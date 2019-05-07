@@ -1,9 +1,11 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+  void info();
+
   void input_data(int side); //side: 1 - белые, 2 - чёрные фигуры;
 
-  int charTOint();
+  int charTOint(char input[6]);
 
   void move_figure();
 
@@ -11,9 +13,7 @@
 
   int black_figure();
 
-  void log_steps();
-
-  int checkwin();
+  int checkwin(int status);
 
   void pawn_transformation();
 

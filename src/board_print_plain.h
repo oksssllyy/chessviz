@@ -1,21 +1,17 @@
-#ifndef PRINT_BOARD_H
-#define PRINT_BOARD_H
+#ifndef BOARD_PRINT_PLAIN_H
+#define BOARD_PRINT_PLAIN_H
 #include "board.h"
 
-void print_board(struct Board point) {
-  for (size_t i = 0; i < 8; i++) {
-    printf("%ld ", i + 1);
-    for (size_t j = 0; j < 8; j++) {
-      printf("[%c] ", point.board[i][j]);
-    }
-    printf("\n");
-  }
+struct Board {
+  char board[8][8];
+};
 
-  for (size_t i = 0; i < 8; i++) {
-    printf("   %c", letter[i]);
-  }
+struct Board point;
 
-  printf("\n");
-}
+char letter[8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
-#endif //PRINT_BOARD_H
+void print_board();
+
+void make_board();
+
+#endif //BOARD_PRINT_PLAIN_H
