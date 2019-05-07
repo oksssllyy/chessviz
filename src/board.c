@@ -446,6 +446,36 @@ void pawn_transformation() {
   }
 }
 
+void move_figure() {
+  point.board[y2][x2] = point.board[Y1][x1];
+  point.board[Y1][x1] = ' ';
+}
+
+int checkwin(int status) {
+  int player = 0;
+  if (status == 1) {
+    for (int i = 0; i < 8; i++) {
+      for (int j = 0; j < 8; j++) {
+        if (point.board[j][i] == 'q') {
+          player = 1;
+        }
+      }
+    }
+  }
+  if (status == 2) {
+    for (int i = 0; i < 8; i++) {
+      for (int j = 0; j < 8; j++) {
+        if (point.board[j][i] == 'Q') {
+          player = 2;
+        }
+      }
+    }
+  }
+
+  if (player == 0) {
+    return status;
+  }
+}
 
 
 
