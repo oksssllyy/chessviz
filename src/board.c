@@ -1,7 +1,10 @@
 #include "board.h"
-#include "board_print_plain.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+extern struct Board {
+  char board[8][8];
+} point;
 
 char input[6];
 int x1, Y1, x2, y2;
@@ -22,12 +25,15 @@ void input_data(int side) {
       }
       if ((input[2] != '-') && (input[2] != 'x')) {
         printf("Слушай, ошибочка вышла. Попробуй заново ввести: ");
+        break;
       }
       if ((input[2] == 'x') && point.board[y2][x2] == ' ') {
         printf("Никого нетю, чтобы рубить.\n");
+        break;
       }
       if ((input[2] == '-') && point.board[y2][x2] != ' ') {
         printf("Стой, стой. Не занято ли там, а?\n");
+        break;
       }
       if (charTOint(input)){
         break;
@@ -475,19 +481,6 @@ int checkwin(int status) {
   if (player == 0) {
     return status;
   }
+  return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
