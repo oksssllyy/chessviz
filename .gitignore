@@ -1,4 +1,3 @@
-board
-*.h.swp
-*.c.swp
-
+main
+*.o
+chessviz
