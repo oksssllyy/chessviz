@@ -75,8 +75,7 @@ void make_board() {
   }
 }
 
-int main()
-{
+int main() {
   int status = 0;
 
   info();
@@ -86,7 +85,7 @@ int main()
   print_board();
 
   while (1) {
-    printf("Ход белых фигур: ");
+    printf("\nХод белых фигур: ");
     input_data(1);
     move_figure();
     print_board();
@@ -96,7 +95,7 @@ int main()
     }
 
 
-    printf("Ход чёрных фигур: ");
+    printf("\nХод чёрных фигур: ");
     input_data(2);
     move_figure();
     print_board();
