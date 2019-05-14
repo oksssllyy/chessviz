@@ -10,68 +10,58 @@ char input[6];
 int x1, Y1, x2, y2;
 
 void info(){
-  printf("      Шахматы\n\n\n");
+  printf("\n\n\n                             Шахматы\n\n\n");
   printf("Обычный ход (пешка): A2-A3\nВзятие фигуры (пешкой): A4xB5\n\n");
-  printf("Пример хода белых фигур:\nC2-C4 (Ходы белых фигур осуществляются вводом большых букв).\nПример хода чёрных фигур:\nс7-с5 (Ходы чёрных фигур осуществляются вводом маленьких букв).\n\n");
-  printf("Для вывода на экран данной информации введите в любой момент 'i'.\n");
+  printf("Пример хода белых фигур:\nC2-C4 (Ходы белых фигур осуществляются вводом больших букв).\nПример хода чёрных фигур:\nс7-с5 (Ходы чёрных фигур осуществляются вводом маленьких букв).\n\n");
+  printf("Для вывода на экран данной информации введите в любой момент 'i'.\n\n\n");
 }
 
 void input_data(int side) {
-  while (1) {
-    while (1) {
+  while(1) {
+    while(1) {
       fgets(input, 6, stdin);
       if (input[0] == 'i') {
         info();
-      }
-      if ((input[2] != '-') && (input[2] != 'x')) {
-        printf("Слушай, ошибочка вышла. Попробуй заново ввести: ");
         break;
       }
-      if (charTOint(input)){
-        if ((input[2] == 'x') && point.board[y2][x2] == ' ') {
-        printf("Никого нетю, чтобы рубить.\n");
+      if (charTOint(input, side)) {
         break;
       }
-      if ((input[2] == '-') && point.board[y2][x2] != ' ') {
-        printf("Стой, стой. Не занято ли там, а?\n");
-        break;
-      }
-        break;
-      }
-      printf("Произошла ошибочка. Попробуйте ввести заново ход, уважаемый шамхматист :)\n");
     }
     if (side == 1){
       if (white_figure()) {
         break;
       } else {
-        printf("Произошла ошибочка. Попробуйте ввести заново ход, уважаемый шамхматист :)\n");
+        printf("Произошла ошибочка в ходе белой фигуры. Попробуйте ввести заново ход, уважаемый шамхматист :)\n");
       }
     }
     if (side == 2){
       if (black_figure()) {
         break;
       } else {
-        printf("Произошла ошибочка. Попробуйте ввести заново ход, уважаемый шамхматист :)\n");
+        printf("Произошла ошибочка в ходе чёрной фигуры. Попробуйте ввести заново ход, уважаемый шамхматист :)\n");
       }
-    } 
+    }
   }
 }
 
-int charTOint(char input[6]) {
-  
-  if ((input[0] > 'A') && (input[3] < 'S')) {
+int charTOint(char input[6], int side) {
+  if ((input[0] > 'A') && (input[3] < 'S') && side == 1) {
     x1 = (int)input[0] - 'A';
     Y1 = (int)input[1] - '1';
     x2 = (int)input[3] - 'A';
     y2 = (int)input[4] - '1';
-  }
-
-  if ((input[0] > 'a') && (input[3] < 's')) {
+  } 
+  else if ((input[0] > 'a') && (input[3] < 's') && side == 2) {
     x1 = (int)input[0] - 'a';
     Y1 = (int)input[1] - '1';
     x2 = (int)input[3] - 'a';
     y2 = (int)input[4] - '1';
   }
+  else {
+    return 0;
+  }
+
 
   if ((x1 >= 0) && (x1 < 8) && (Y1 >= 0) && (Y1 < 8) && 
       (x2 >= 0) && (x2 < 8) && (y2 >= 0) && (y2 < 8)) {
@@ -84,6 +74,18 @@ int charTOint(char input[6]) {
 }
 
 int white_figure() {
+  if ((input[2] == '-') && point.board[y2][x2] != ' ') {
+    printf("Стой, стой. Не занято ли там, а?\n");
+    return 0;
+  }
+  if ((input[2] != '-') && (input[2] != 'x')) {
+    printf("Слушай, ошибочка вышла. Попробуй заново ввести: \n");
+    return 0;
+  }
+  if ((input[2] == 'x') && point.board[y2][x2] == ' ') {
+    printf("Никого нетю, чтобы рубить.\n");
+    return 0;
+  }
   if ((point.board[y2][x2] > 'A') && (point.board[y2][x2] < 'S')) {
     printf("Упс, ведь там свои, не?\n");
     return 0;
@@ -258,21 +260,33 @@ int white_figure() {
 }
 
 int black_figure() {
+  if ((input[2] != '-') && (input[2] != 'x')) {
+    printf("Слушай, ошибочка вышла. Попробуй заново ввести: \n");
+    return 0;
+  }
+  if ((input[2] == '-') && point.board[y2][x2] != ' ') {
+    printf("Стой, стой. Не занято ли там, а?\n");
+    return 0;
+  }
+  if ((input[2] == 'x') && point.board[y2][x2] == ' ') {
+    printf("Никого нетю, чтобы рубить.\n");
+    return 0;
+  }
   if ((point.board[y2][x2] > 'a') && (point.board[y2][x2] < 's')) {
     printf("Упс, ведь там свои, не?\n");
     return 0;
   }
-  switch (point.board[x1][Y1]) {
+  switch (point.board[Y1][x1]) {
     case 'p':
       if ((Y1 == 6) && (point.board[y2][x2] == ' ') && (y2 == 5 || y2 == 4) && (x1 == x2) && (input[2] == '-')) {
         return 1; //первый ход пешки
       } 
-      if ((y2 - Y1 == 1) && (x1 == x2) && (point.board[y2][x2] = ' ') && (input[2] == '-')) {
+      if ((Y1 - y2 == 1) && (x1 == x2) && (point.board[y2][x2] = ' ') && (input[2] == '-')) {
         pawn_transformation();
         return 1; 
       }
       if ((point.board[y2][x2] > 'A' && point.board[y2][x2] < 'S') && 
-          (x2 - x1 == 1 || x1 - x2 == 1) && (Y1 - y2 == 1) && (input[2] == 'x')) {
+          (x2 - x2 == 1 || x1 - x2 == 1) && (Y1 - y2 == 1) && (input[2] == 'x')) {
         pawn_transformation();
         return 1;
       }
@@ -471,7 +485,7 @@ int checkwin(int status) {
   if (status == 1) {
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
-        if (point.board[j][i] == 'q') {
+        if (point.board[j][i] == 'k') {
           player = 1;
         }
       }
@@ -480,7 +494,7 @@ int checkwin(int status) {
   if (status == 2) {
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
-        if (point.board[j][i] == 'Q') {
+        if (point.board[j][i] == 'K') {
           player = 2;
         }
       }
