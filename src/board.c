@@ -1,10 +1,12 @@
 #include "board.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 extern struct Board {
   char board[8][8];
 } point;
+extern void print_board();
 
 char input[6];
 int x1, Y1, x2, y2;
@@ -13,15 +15,22 @@ void info(){
   printf("\n\n\n                             Шахматы\n\n\n");
   printf("Обычный ход (пешка): A2-A3\nВзятие фигуры (пешкой): A4xB5\n\n");
   printf("Пример хода белых фигур:\nC2-C4 (Ходы белых фигур осуществляются вводом больших букв).\nПример хода чёрных фигур:\nс7-с5 (Ходы чёрных фигур осуществляются вводом маленьких букв).\n\n");
-  printf("Для вывода на экран данной информации введите в любой момент 'i'.\n\n\n");
+  printf("Для вывода на экран данной информации введите в любой момент 'info'.\n");
+  printf("Для вывода доски на экран введите в любой момент 'print'.\n\n\n");
 }
 
 void input_data(int side) {
   while(1) {
     while(1) {
       fgets(input, 6, stdin);
-      if (input[0] == 'i') {
-        info();
+      char info[4] = "info";
+      if (strcmp(input, info) == 0) {
+        information();
+        break;
+      }
+      char print[5] = "print";
+      if (strcmp(input, print) == 0) {
+        print_board();
         break;
       }
       if (charTOint(input, side)) {
@@ -46,13 +55,13 @@ void input_data(int side) {
 }
 
 int charTOint(char input[6], int side) {
-  if ((input[0] > 'A') && (input[3] < 'S') && side == 1) {
+  if ((input[0] >= 'A') && (input[3] < 'S') && side == 1) {
     x1 = (int)input[0] - 'A';
     Y1 = (int)input[1] - '1';
     x2 = (int)input[3] - 'A';
     y2 = (int)input[4] - '1';
   } 
-  else if ((input[0] > 'a') && (input[3] < 's') && side == 2) {
+  else if ((input[0] >= 'a') && (input[3] < 's') && side == 2) {
     x1 = (int)input[0] - 'a';
     Y1 = (int)input[1] - '1';
     x2 = (int)input[3] - 'a';
@@ -74,6 +83,9 @@ int charTOint(char input[6], int side) {
 }
 
 int white_figure() {
+  if (input[0] == 'i') {
+    return 0;
+  }
   if ((input[2] == '-') && point.board[y2][x2] != ' ') {
     printf("Стой, стой. Не занято ли там, а?\n");
     return 0;
@@ -286,7 +298,7 @@ int black_figure() {
         return 1; 
       }
       if ((point.board[y2][x2] > 'A' && point.board[y2][x2] < 'S') && 
-          (x2 - x2 == 1 || x1 - x2 == 1) && (Y1 - y2 == 1) && (input[2] == 'x')) {
+          (x2 - x1 == 1 || x1 - x2 == 1) && (Y1 - y2 == 1) && (input[2] == 'x')) {
         pawn_transformation();
         return 1;
       }
