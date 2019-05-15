@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-  void info();
+  void information();
 
   void input_data(int side); //side: 1 - белые, 2 - чёрные фигуры;
 
