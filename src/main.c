@@ -78,7 +78,7 @@ void make_board() {
 int main() {
   int status = 0;
 
-  info();
+  information();
 
   make_board();
 

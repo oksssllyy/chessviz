@@ -11,7 +11,7 @@ extern void print_board();
 char input[6];
 int x1, Y1, x2, y2;
 
-void info(){
+void information(){
   printf("\n\n\n                             Шахматы\n\n\n");
   printf("Обычный ход (пешка): A2-A3\nВзятие фигуры (пешкой): A4xB5\n\n");
   printf("Пример хода белых фигур:\nC2-C4 (Ходы белых фигур осуществляются вводом больших букв).\nПример хода чёрных фигур:\nс7-с5 (Ходы чёрных фигур осуществляются вводом маленьких букв).\n\n");
@@ -111,7 +111,7 @@ int white_figure() {
         pawn_transformation();
         return 1; 
       }
-      if ((point.board[y2][x2] > 'a' && point.board[y2][x2] < 's') && 
+      if ((point.board[y2][x2] >= 'a' && point.board[y2][x2] < 's') && 
           (x2 - x1 == 1 || x1 - x2 == 1) && (y2 - Y1 == 1) && (input[2] == 'x')) {
         pawn_transformation();
         return 1;
@@ -297,7 +297,7 @@ int black_figure() {
         pawn_transformation();
         return 1; 
       }
-      if ((point.board[y2][x2] > 'A' && point.board[y2][x2] < 'S') && 
+      if ((point.board[y2][x2] >= 'A' && point.board[y2][x2] < 'S') && 
           (x2 - x1 == 1 || x1 - x2 == 1) && (Y1 - y2 == 1) && (input[2] == 'x')) {
         pawn_transformation();
         return 1;
