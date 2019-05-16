@@ -12,10 +12,10 @@ char input[6];
 int x1, Y1, x2, y2;
 
 void information(){
-  printf("\n\n\n                             Шахматы\n\n\n");
+  printf("\n\n\n\n\n\n\n\n\n\n                                  Шахматы\n\n\n\n\n\n");
   printf("Обычный ход (пешка): A2-A3\nВзятие фигуры (пешкой): A4xB5\n\n");
   printf("Пример хода белых фигур:\nC2-C4 (Ходы белых фигур осуществляются вводом больших букв).\nПример хода чёрных фигур:\nс7-с5 (Ходы чёрных фигур осуществляются вводом маленьких букв).\n\n");
-  printf("Для вывода на экран данной информации введите в любой момент 'info'.\n");
+  printf("Для вывода на экран данной информации введите в любой момент 'infor'.\n");
   printf("Для вывода доски на экран введите в любой момент 'print'.\n\n\n");
 }
 
@@ -23,16 +23,6 @@ void input_data(int side) {
   while(1) {
     while(1) {
       fgets(input, 6, stdin);
-      char info[4] = "info";
-      if (strcmp(input, info) == 0) {
-        information();
-        break;
-      }
-      char print[5] = "print";
-      if (strcmp(input, print) == 0) {
-        print_board();
-        break;
-      }
       if (charTOint(input, side)) {
         break;
       }
@@ -55,6 +45,16 @@ void input_data(int side) {
 }
 
 int charTOint(char input[6], int side) {
+  char info[5] = "infor";
+  if (strcmp(input, info) == 0) {
+    information();
+    return 0;
+  }
+  char print[5] = "print";
+  if (strcmp(input, print) == 0) {
+    print_board();
+    return 0;
+  }
   if ((input[0] >= 'A') && (input[3] < 'S') && side == 1) {
     x1 = (int)input[0] - 'A';
     Y1 = (int)input[1] - '1';
@@ -157,18 +157,18 @@ int white_figure() {
     case 'Q':
       if (Y1 == y2) {
         if (x2 > x1) { 
-          for (int i = x1; i < x2; i++) {
+          for (int i = x1 + 1; i <= x2; i++) {
             if (point.board[y2][i] != ' ') {
-              printf("По пути есть фигура. Нельзя дойти до назначенного места.\n");
+              printf("По пути есть фигура. Нельзя дойти до назначенного места. перв\n");
               return 0;
             }
           }
         return 1;
         }
         if (x2 < x1) {
-          for (int i = x1; i > x2; i--) {
+          for (int i = x1 -1 ; i >= x2; i--) {
             if (point.board[y2][i] != ' ') {
-              printf("По пути есть фигура. Нельзя дойти до назначенного места.\n");
+              printf("По пути есть фигура. Нельзя дойти до назначенного места. второе\n");
               return 0;
             }  
           }
@@ -177,41 +177,43 @@ int white_figure() {
       } //движение фигуры по горизонтали
       if (x1 == x2) {
         if (y2 > Y1) { 
-          for (int i = Y1; i < y2; i++) {
+          for (int i = Y1 + 1; i <= y2; i++) {
             if (point.board[i][x2] != ' ') {
-              printf("По пути есть фигура. Нельзя дойти до назначенного места.\n");
+              printf("По пути есть фигура. Нельзя дойти до назначенного места. третье\n");
               return 0;
             }
           }
         return 1;
         }
         if (y2 < Y1) {
-          for (int i = Y1; i > y2; i--) {
+          for (int i = Y1 - 1; i >= y2; i--) {
             if (point.board[i][x2] != ' ') {
-              printf("По пути есть фигура. Нельзя дойти до назначенного места.\n");
+              printf("По пути есть фигура. Нельзя дойти до назначенного места. четвер\n");
               return 0;
-            }  
+            }
           }
         return 1;
         }
       } //движение фигуры по вертикали
       if (x2 + y2 == x1 + Y1) {
         if (x2 < x1) {
-          for (int i = x1; i > x2; i--) {
-            for (int j = Y1; j < y2; j++) {
-              if (point.board[j][i] != ' ') {
-                printf("По пути есть фигура.\n");
-                return 0;
+          for (int i = x1 - 1; i >= x2; i--) {
+            for (int j = Y1 + 1; j <= y2; j++) {
+              if (point.board[j][i] == ' ') {
+                Y1++;
+                break;
+                printf("По пути есть фигура. пят\n");
               }
+              return 0;
             }
+            return 1;
           }
-          return 1;
         }
         if (x2 > x1) {
-          for (int i = x1; i < x2; i++) {
-            for (int j = Y1; j > y2; j--) {
+          for (int i = x1; i <= x2; i++) {
+            for (int j = Y1; j >= y2; j--) {
               if (point.board[j][i] != ' ') {
-                printf("По пути есть фигура.\n");
+                printf("По пути есть фигура. шест\n");
                 return 0;
               }
             }
@@ -221,20 +223,20 @@ int white_figure() {
       } //движение типа по побочным диагоналям
       if (y2 - Y1 == x2 - x1) {
         if (x2 > x1) {
-          for (int i = x1; i < x2; i++) {
-            for (int j = Y1; j < y2; j++) {
+          for (int i = x1; i <= x2; i++) {
+            for (int j = Y1; j <= y2; j++) {
               if (point.board[j][i] != ' ') {
-                printf("По пути есть фигура.\n");
+                printf("По пути есть фигура. седьм\n");
                 return 0;
               }
             }
           }
         }
         if (x2 < x1) {
-          for (int i = x1; i > x2; i--) {
-            for (int j = Y1; j > y2; j--) {
+          for (int i = x1; i >= x2; i--) {
+            for (int j = Y1; j >= y2; j--) {
               if (point.board[j][i] != ' ') {
-                printf("По пути есть фигура.\n");
+                printf("По пути есть фигура. восьм\n");
                 return 0;
               }
             }
