@@ -175,26 +175,7 @@ int white_figure() {
         return 1;
         }
       } //движение фигуры по горизонтали
-      if (x1 == x2) {
-        if (y2 > Y1) { 
-          for (int i = Y1 + 1; i <= y2; i++) {
-            if (point.board[i][x2] != ' ') {
-              printf("По пути есть фигура. Нельзя дойти до назначенного места. третье\n");
-              return 0;
-            }
-          }
-        return 1;
-        }
-        if (y2 < Y1) {
-          for (int i = Y1 - 1; i >= y2; i--) {
-            if (point.board[i][x2] != ' ') {
-              printf("По пути есть фигура. Нельзя дойти до назначенного места. четвер\n");
-              return 0;
-            }
-          }
-        return 1;
-        }
-      } //движение фигуры по вертикали
+
       if (x2 + y2 == x1 + Y1) {
         if (x2 < x1) {
           for (int i = x1 - 1; i >= x2; i--) {
@@ -206,8 +187,8 @@ int white_figure() {
               }
               return 0;
             }
-            return 1;
           }
+          return 1;
         }
         if (x2 > x1) {
           for (int i = x1; i <= x2; i++) {
@@ -457,6 +438,27 @@ int black_figure() {
       break;
   }
   return 0;
+}
+
+int check_y() {
+  if (x1 == x2) {
+    if (y2 > Y1) { 
+      for (int i = Y1 + 1; i <= y2; i++) {
+        if (point.board[i][x2] != ' ') {
+          return 0;
+        }
+      }
+      return 1;
+    }
+    if (y2 < Y1) {
+      for (int i = Y1 - 1; i >= y2; i--) {
+        if (point.board[i][x2] != ' ') {
+          return 0;
+        }
+      }
+    return 1;
+    }
+  }
 }
 
 void pawn_transformation() {
