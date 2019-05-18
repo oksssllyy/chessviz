@@ -12,27 +12,46 @@ char input[6];
 int x1, Y1, x2, y2;
 
 void information(){
-  printf("\n\n\n\n\n\n\n\n\n\n                                  Шахматы\n\n\n\n\n\n");
+  printf("\n\n\n\n\n                                  Шахматы\n\n\n\n\n");
   printf("Обычный ход (пешка): A2-A3\nВзятие фигуры (пешкой): A4xB5\n\n");
   printf("Пример хода белых фигур:\nC2-C4 (Ходы белых фигур осуществляются вводом больших букв).\n");
   printf("Пример хода чёрных фигур:\nс7-с5 (Ходы чёрных фигур осуществляются вводом маленьких букв).\n\n");
-  printf("Для вывода на экран данной информации введите в любой момент 'inform'.\n");
-  printf("Для вывода доски на экран введите в любой момент 'board'.\n\n\n");
+  printf("Чтобы узнать, чей ход, введите в любой момент 'step'.\n");
+  printf("Для вывода доски на экран введите в любой момент 'board'.\n");
+  printf("Для вывода на экран данной информации введите в любой момент 'info'.\n\n\n");
+}
+
+int step(int side) {
+  if (side == 1) {
+    printf("Ход белых фигур.\n\n");
+  }
+  if (side == 2) {
+    printf("Ход чёрных фигур.\n\n");
+  }
+  return 0;
 }
 
 void input_data(int side) {
   while(1) {
     while(1) {
       scanf("%s", input);
-      char info[5] = "infor";
-      if (strcmp(input, info) == 0) {
+      if (strcmp(input, "info") == 0) {
         information();
+        break;
+      }
+      else if (strcmp(input, "step") == 0) {
+        step(side);
+        break;
+      }
+      if (strcmp(input, "board") == 0) {
+        print_board();
+        printf("\n");
         break;
       }
       if (charTOint(input, side)) {
         break;
       }
-      printf("Введите заново: ");
+      printf("Введите ход: ");
     }
     if (side == 1) {
       if (white_figure()) {
@@ -44,17 +63,11 @@ void input_data(int side) {
         break;
       }
     }
-    printf("Введите заново: ");
+    printf("Введите ход: ");
   }
 }
 
 int charTOint(char input[6], int side) {
-  char print[5] = "board";
-  if (strcmp(input, print) == 0) {
-    print_board();
-    return 0;
-  }
-
   if ((input[0] >= 'A' && input[0] < 'S') && (input[3] >= 'A' && input[3] < 'S') && side == 1) {
     x1 = (int)input[0] - 'A';
     Y1 = (int)input[1] - '1';
