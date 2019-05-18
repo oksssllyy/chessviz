@@ -155,56 +155,9 @@ int white_figure() {
       }
       break;
     case 'Q':
-      
-
-      if (x2 + y2 == x1 + Y1) {
-        if (x2 < x1) {
-          for (int i = x1 - 1; i >= x2; i--) {
-            for (int j = Y1 + 1; j <= y2; j++) {
-              if (point.board[j][i] == ' ') {
-                Y1++;
-                break;
-                printf("По пути есть фигура. пят\n");
-              }
-              return 0;
-            }
-          }
-          return 1;
-        }
-        if (x2 > x1) {
-          for (int i = x1; i <= x2; i++) {
-            for (int j = Y1; j >= y2; j--) {
-              if (point.board[j][i] != ' ') {
-                printf("По пути есть фигура. шест\n");
-                return 0;
-              }
-            }
-          }
-          return 1;
-        }  
-      } //движение типа по побочным диагоналям
-      if (y2 - Y1 == x2 - x1) {
-        if (x2 > x1) {
-          for (int i = x1; i <= x2; i++) {
-            for (int j = Y1; j <= y2; j++) {
-              if (point.board[j][i] != ' ') {
-                printf("По пути есть фигура. седьм\n");
-                return 0;
-              }
-            }
-          }
-        }
-        if (x2 < x1) {
-          for (int i = x1; i >= x2; i--) {
-            for (int j = Y1; j >= y2; j--) {
-              if (point.board[j][i] != ' ') {
-                printf("По пути есть фигура. восьм\n");
-                return 0;
-              }
-            }
-          }
-        }
-      } //движение фигуры типа по главным диагоналям
+      if (check_d() || check_x() || check_y()) {
+        return 1;
+      }
       break;
     case 'K':
       if (((x1 - x2 != 1) && (Y1 - y2 != 1)) || ((x2 - x1 != 1) && (y2 - Y1 != 1))) {
@@ -424,7 +377,7 @@ int black_figure() {
 int check_y() {
   if (x1 == x2) {
     if (y2 > Y1) { 
-      for (int i = Y1 + 1; i <= y2; i++) {
+      for (int i = Y1 + 1; i < y2; i++) {
         if (point.board[i][x2] != ' ') {
           return 0;
         }
@@ -432,7 +385,7 @@ int check_y() {
       return 1;
     }
     if (y2 < Y1) {
-      for (int i = Y1 - 1; i >= y2; i--) {
+      for (int i = Y1 - 1; i > y2; i--) {
         if (point.board[i][x2] != ' ') {
           return 0;
         }
@@ -440,12 +393,13 @@ int check_y() {
     return 1;
     }
   }
+  return 0;
 }
 
 int check_x() {
   if (Y1 == y2) {
     if (x2 > x1) { 
-      for (int i = x1 + 1; i <= x2; i++) {
+      for (int i = x1 + 1; i < x2; i++) {
         if (point.board[y2][i] != ' ') {
           return 0;
         }
@@ -453,7 +407,7 @@ int check_x() {
       return 1;
     }
     if (x2 < x1) {
-      for (int i = x1 -1 ; i >= x2; i--) {
+      for (int i = x1 -1 ; i > x2; i--) {
         if (point.board[y2][i] != ' ') {
           return 0;
         }  
@@ -461,8 +415,62 @@ int check_x() {
     return 1;
     }
   }
+  return 0;
 }
 
+int check_d() {
+  /*Движение фигур по побочным диагонали*/
+  if (x2 + y2 == x1 + Y1) {
+    if (x2 < x1) {
+      for (int i = x1 - 1; i > x2; i--) {
+        for (int j = Y1 + 1; j < y2; j++) {
+          if (point.board[j][i] == ' ') {
+            break;
+          }
+          return 0;
+        }
+      }
+      return 1;
+    }
+    if (x2 > x1) {
+      for (int i = x1 + 1; i < x2; i++) {
+        for (int j = Y1 - 1; j > y2; j--) {
+          if (point.board[j][i] != ' ') {
+            break;
+          }
+          return 0;
+        }
+      }
+      return 1;
+    }
+  }
+  /*Движение фигур по главным диагонали*/
+  if (y2 - Y1 == x2 - x1) {
+    if (x2 > x1) {
+      for (int i = x1 + 1; i < x2; i++) {
+        for (int j = Y1 + 1; j < y2; j++) {
+          if (point.board[j][i] != ' ') {
+            break;
+          }
+          return 0;
+        }
+      }
+      return 1;
+    }
+    if (x2 < x1) {
+      for (int i = x1 - 1; i > x2; i--) {
+        for (int j = Y1 - 1; j > y2; j--) {
+          if (point.board[j][i] != ' ') {
+            break;
+          }
+          return 0;
+        }
+      }
+      return 1;
+    }
+  }
+  return 0;    
+}
 void pawn_transformation() {
   char change_pawn;
   if ((point.board[Y1][x1] == 'p') && (y2 == 0)) {
