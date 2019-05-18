@@ -11,6 +11,12 @@
 
   int white_figure();
 
+  int check_x();
+
+  int check_y();
+
+  int check_d(); //check side and main diagonals
+
   int black_figure();
 
   int checkwin(int status);
