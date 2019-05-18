@@ -14,45 +14,46 @@ int x1, Y1, x2, y2;
 void information(){
   printf("\n\n\n\n\n\n\n\n\n\n                                  Шахматы\n\n\n\n\n\n");
   printf("Обычный ход (пешка): A2-A3\nВзятие фигуры (пешкой): A4xB5\n\n");
-  printf("Пример хода белых фигур:\nC2-C4 (Ходы белых фигур осуществляются вводом больших букв).\nПример хода чёрных фигур:\nс7-с5 (Ходы чёрных фигур осуществляются вводом маленьких букв).\n\n");
-  printf("Для вывода на экран данной информации введите в любой момент 'infor'.\n");
-  printf("Для вывода доски на экран введите в любой момент 'print'.\n\n\n");
+  printf("Пример хода белых фигур:\nC2-C4 (Ходы белых фигур осуществляются вводом больших букв).\n");
+  printf("Пример хода чёрных фигур:\nс7-с5 (Ходы чёрных фигур осуществляются вводом маленьких букв).\n\n");
+  printf("Для вывода на экран данной информации введите в любой момент 'inform'.\n");
+  printf("Для вывода доски на экран введите в любой момент 'board'.\n\n\n");
 }
 
 void input_data(int side) {
   while(1) {
     while(1) {
-      fgets(input, 6, stdin);
+      scanf("%s", input);
+      char info[5] = "infor";
+      if (strcmp(input, info) == 0) {
+        information();
+        break;
+      }
       if (charTOint(input, side)) {
         break;
       }
-    printf("Введите ещё раз: ");    
+      printf("Введите заново: ");
     }
-    if (side == 1){
+    if (side == 1) {
       if (white_figure()) {
         break;
       }
     }
-    if (side == 2){
+    if (side == 2) {
       if (black_figure()) {
         break;
       }
     }
-    printf("Введите ещё раз: ");    
+    printf("Введите заново: ");
   }
 }
 
 int charTOint(char input[6], int side) {
-  char info[5] = "infor";
-  if (strcmp(input, info) == 0) {
-    information();
-  }
-  char print[5] = "print";
+  char print[5] = "board";
   if (strcmp(input, print) == 0) {
     print_board();
-    printf("\n");
+    return 0;
   }
-
 
   if ((input[0] >= 'A' && input[0] < 'S') && (input[3] >= 'A' && input[3] < 'S') && side == 1) {
     x1 = (int)input[0] - 'A';
@@ -66,16 +67,11 @@ int charTOint(char input[6], int side) {
     x2 = (int)input[3] - 'a';
     y2 = (int)input[4] - '1';
   }
-  else {
-    return 0;
-  }
 
   if ((x1 >= 0) && (x1 < 8) && (Y1 >= 0) && (Y1 < 8) && 
       (x2 >= 0) && (x2 < 8) && (y2 >= 0) && (y2 < 8)) {
     return 1;
-  } else {
-    return 0;
-  }
+  } 
   return 0;
 }
 
