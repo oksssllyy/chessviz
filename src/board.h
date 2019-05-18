@@ -3,6 +3,8 @@
 
   void information();
 
+  int step(int side);
+
   void input_data(int side); //side: 1 - белые, 2 - чёрные фигуры;
 
   int charTOint(char input[6], int side);
