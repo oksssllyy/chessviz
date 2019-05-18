@@ -435,7 +435,7 @@ int check_d() {
     if (x2 > x1) {
       for (int i = x1 + 1; i < x2; i++) {
         for (int j = Y1 - 1; j > y2; j--) {
-          if (point.board[j][i] != ' ') {
+          if (point.board[j][i] == ' ') {
             break;
           }
           return 0;
@@ -449,7 +449,7 @@ int check_d() {
     if (x2 > x1) {
       for (int i = x1 + 1; i < x2; i++) {
         for (int j = Y1 + 1; j < y2; j++) {
-          if (point.board[j][i] != ' ') {
+          if (point.board[j][i] == ' ') {
             break;
           }
           return 0;
@@ -460,7 +460,7 @@ int check_d() {
     if (x2 < x1) {
       for (int i = x1 - 1; i > x2; i--) {
         for (int j = Y1 - 1; j > y2; j--) {
-          if (point.board[j][i] != ' ') {
+          if (point.board[j][i] == ' ') {
             break;
           }
           return 0;
