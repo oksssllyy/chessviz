@@ -155,26 +155,7 @@ int white_figure() {
       }
       break;
     case 'Q':
-      if (Y1 == y2) {
-        if (x2 > x1) { 
-          for (int i = x1 + 1; i <= x2; i++) {
-            if (point.board[y2][i] != ' ') {
-              printf("По пути есть фигура. Нельзя дойти до назначенного места. перв\n");
-              return 0;
-            }
-          }
-        return 1;
-        }
-        if (x2 < x1) {
-          for (int i = x1 -1 ; i >= x2; i--) {
-            if (point.board[y2][i] != ' ') {
-              printf("По пути есть фигура. Нельзя дойти до назначенного места. второе\n");
-              return 0;
-            }  
-          }
-        return 1;
-        }
-      } //движение фигуры по горизонтали
+      
 
       if (x2 + y2 == x1 + Y1) {
         if (x2 < x1) {
@@ -455,6 +436,27 @@ int check_y() {
         if (point.board[i][x2] != ' ') {
           return 0;
         }
+      }
+    return 1;
+    }
+  }
+}
+
+int check_x() {
+  if (Y1 == y2) {
+    if (x2 > x1) { 
+      for (int i = x1 + 1; i <= x2; i++) {
+        if (point.board[y2][i] != ' ') {
+          return 0;
+        }
+      }
+      return 1;
+    }
+    if (x2 < x1) {
+      for (int i = x1 -1 ; i >= x2; i--) {
+        if (point.board[y2][i] != ' ') {
+          return 0;
+        }  
       }
     return 1;
     }
