@@ -7,7 +7,7 @@ void print_board() {
 
   char letter[8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
-  for (int i = 0; i < 8; i++) {
+  for (int i = 7; i >= 0; i--) {
     printf("%d ", i + 1);
     for (int j = 0; j < 8; j++) {
       printf("[%c] ", point.board[i][j]);
