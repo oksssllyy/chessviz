@@ -34,7 +34,7 @@ void make_board() {
   }
 
   for (i = 0; i < 8; i++) {
-    point.board[1][i] = ' '; //белые
+    point.board[1][i] = 'P';
   }
 
   for (i = 0; i < 8; i++) {
@@ -71,7 +71,7 @@ void make_board() {
   }
 
   for (i = 0; i < 8; i++) {
-    point.board[6][i] = ' '; //чёрные
+    point.board[6][i] = 'p';
   }
 }
 
