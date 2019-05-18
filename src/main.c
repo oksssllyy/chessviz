@@ -105,7 +105,7 @@ int main() {
     }
   }
 
-  printf("\n\n   Победил %d игрок!!!", status);
+  printf("\n\n   Победил %d игрок!!!\n", status);
 
   return 0;
 

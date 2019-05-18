@@ -26,21 +26,19 @@ void input_data(int side) {
       if (charTOint(input, side)) {
         break;
       }
+    printf("Введите ещё раз: ");    
     }
     if (side == 1){
       if (white_figure()) {
         break;
-      } else {
-        printf("Произошла ошибочка в ходе белой фигуры. Попробуйте ввести заново ход, уважаемый шамхматист :)\n");
       }
     }
     if (side == 2){
       if (black_figure()) {
         break;
-      } else {
-        printf("Произошла ошибочка в ходе чёрной фигуры. Попробуйте ввести заново ход, уважаемый шамхматист :)\n");
       }
     }
+    printf("Введите ещё раз: ");    
   }
 }
 
@@ -48,20 +46,21 @@ int charTOint(char input[6], int side) {
   char info[5] = "infor";
   if (strcmp(input, info) == 0) {
     information();
-    return 0;
   }
   char print[5] = "print";
   if (strcmp(input, print) == 0) {
     print_board();
-    return 0;
+    printf("\n");
   }
-  if ((input[0] >= 'A') && (input[3] < 'S') && side == 1) {
+
+
+  if ((input[0] >= 'A' && input[0] < 'S') && (input[3] >= 'A' && input[3] < 'S') && side == 1) {
     x1 = (int)input[0] - 'A';
     Y1 = (int)input[1] - '1';
     x2 = (int)input[3] - 'A';
     y2 = (int)input[4] - '1';
   } 
-  else if ((input[0] >= 'a') && (input[3] < 's') && side == 2) {
+  else if ((input[0] >= 'a' && input[0] < 's') && (input[3] >= 'a' && input[3] < 's') && side == 2) {
     x1 = (int)input[0] - 'a';
     Y1 = (int)input[1] - '1';
     x2 = (int)input[3] - 'a';
@@ -71,12 +70,10 @@ int charTOint(char input[6], int side) {
     return 0;
   }
 
-
   if ((x1 >= 0) && (x1 < 8) && (Y1 >= 0) && (Y1 < 8) && 
       (x2 >= 0) && (x2 < 8) && (y2 >= 0) && (y2 < 8)) {
     return 1;
   } else {
-    printf("Дружочек, кажется вы вылезли за пределы доски, не?\n");
     return 0;
   }
   return 0;
@@ -87,19 +84,15 @@ int white_figure() {
     return 0;
   }
   if ((input[2] == '-') && point.board[y2][x2] != ' ') {
-    printf("Стой, стой. Не занято ли там, а?\n");
     return 0;
   }
   if ((input[2] != '-') && (input[2] != 'x')) {
-    printf("Слушай, ошибочка вышла. Попробуй заново ввести: \n");
     return 0;
   }
   if ((input[2] == 'x') && point.board[y2][x2] == ' ') {
-    printf("Никого нетю, чтобы рубить.\n");
     return 0;
   }
   if ((point.board[y2][x2] > 'A') && (point.board[y2][x2] < 'S')) {
-    printf("Упс, ведь там свои, не?\n");
     return 0;
   }
   switch (point.board[Y1][x1]) {
@@ -124,7 +117,6 @@ int white_figure() {
       if ((Y1 == y2) && (x1 > x2 || x1 < x2)) {
         return 1;
       }
-      printf("Не, дружок, однако так ладья не ходит :(.\n");
       break;
     case 'N':
       if ((Y1 - y2 == 1 || y2 - Y1 == 1) && (x1 - x2 == 2 || x2 - x1 == 2)) {
@@ -172,19 +164,15 @@ int white_figure() {
 
 int black_figure() {
   if ((input[2] != '-') && (input[2] != 'x')) {
-    printf("Слушай, ошибочка вышла. Попробуй заново ввести: \n");
     return 0;
   }
   if ((input[2] == '-') && point.board[y2][x2] != ' ') {
-    printf("Стой, стой. Не занято ли там, а?\n");
     return 0;
   }
   if ((input[2] == 'x') && point.board[y2][x2] == ' ') {
-    printf("Никого нетю, чтобы рубить.\n");
     return 0;
   }
   if ((point.board[y2][x2] > 'a') && (point.board[y2][x2] < 's')) {
-    printf("Упс, ведь там свои, не?\n");
     return 0;
   }
   switch (point.board[Y1][x1]) {
@@ -209,7 +197,6 @@ int black_figure() {
       if ((Y1 == y2) && (x1 > x2 || x1 < x2)) {
         return 1;
       }
-      printf("Не, дружок, однако так ладья не ходит :(.\n");
       break;
     case 'n':
       if ((Y1 - y2 == 1 || y2 - Y1 == 1) && (x1 - x2 == 2 || x2 - x1 == 2)) {
