@@ -54,13 +54,10 @@ CTEST(moving, movepawnWHITE) {
   charTOint(input, 1);
   point.board[Y1][x1] = 'P';
   int c1 = white_figure();
-  point.board[y2][x2] = ' ';
 
   strcpy(input, "B2-B4"); //первый ход через клетку
   charTOint(input, 1);
-  point.board[Y1][x1] = 'P';
   int c2 = white_figure();
-  point.board[y2][x2] = ' ';
 
   strcpy(input, "B2-B5"); //первый ход через 2 клетки
   charTOint(input, 1);
@@ -69,17 +66,14 @@ CTEST(moving, movepawnWHITE) {
 
   strcpy(input, "B2-C3"); //ход по диагонали вправо
   charTOint(input, 1);
-  point.board[Y1][x1] = 'P';
   int c4 = white_figure();
 
   strcpy(input, "B2-A3"); //ход по диагонали влево
   charTOint(input, 1);
-  point.board[Y1][x1] = 'P';
   int c5 = white_figure();
 
   strcpy(input, "B2-B1"); //первый ход (назад) 
   charTOint(input, 1);
-  point.board[Y1][x1] = 'P';
   int c6 = white_figure();
   point.board[Y1][x1] = ' ';
 
@@ -87,7 +81,7 @@ CTEST(moving, movepawnWHITE) {
   charTOint(input, 1);
   point.board[Y1][x1] = 'P';
   int c7 = white_figure();
-  point.board[y2][x2] = ' ';
+  point.board[Y1][x1] = ' ';
 
   strcpy(input, "A4-B4"); //ход по горизонтали вправо
   charTOint(input, 1);
@@ -112,6 +106,7 @@ CTEST(moving, movepawnWHITE) {
   point.board[y2][x2] = 'r';
   point.board[Y1][x1] = 'P';
   int c11 = white_figure();
+  point.board[Y1][x1] = ' ';
   point.board[y2][x2] = ' ';
 
   strcpy(input, "D4-C5"); //ход взятия
@@ -119,6 +114,7 @@ CTEST(moving, movepawnWHITE) {
   point.board[y2][x2] = 'r';
   point.board[Y1][x1] = 'P';
   int c12 = white_figure();
+  point.board[Y1][x1] = ' ';
   point.board[y2][x2] = ' ';
 
   strcpy(input, "B4-B3"); //ход назад
@@ -134,6 +130,14 @@ CTEST(moving, movepawnWHITE) {
   int c14 = white_figure();
   point.board[Y1][x1] = ' ';
   point.board[Y+1][x2] = ' ';
+  
+  strcpy(input, "B4-B5"); //ход на занятую клетку
+  charTOint(input, 1);
+  point.board[Y+1][x2] = 'r';
+  point.board[Y1][x1] = 'P';
+  int c15 = white_figure();
+  point.board[Y1][x1] = ' ';
+  point.board[Y+1][x2] = ' ';
 
   const int exp1 = 1;
   const int exp2 = 1;
@@ -141,13 +145,15 @@ CTEST(moving, movepawnWHITE) {
   const int exp4 = 0;
   const int exp5 = 0;
   const int exp6 = 0;
-  const int exp7 = 1;
+  const int exp7 = 0;
   const int exp8 = 0;
   const int exp9 = 0;
   const int exp10 = 1;
   const int exp11 = 1;
   const int exp12 = 0;
   const int exp13 = 0;
+  const int exp14 = 0;
+  const int exp15 = 0;
   
   ASSERT_EQUAL(exp1, c1);
   ASSERT_EQUAL(exp2, c2);
@@ -162,4 +168,8 @@ CTEST(moving, movepawnWHITE) {
   ASSERT_EQUAL(exp11, c11);
   ASSERT_EQUAL(exp12, c12);
   ASSERT_EQUAL(exp13, c13);
+  ASSERT_EQUAL(exp14, c14);
+  ASSERT_EQUAL(exp15, c15);
 }
+
+CTEST(moving, moverook)
