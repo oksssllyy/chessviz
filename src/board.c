@@ -106,7 +106,8 @@ int white_figure() {
   }
   switch (point.board[Y1][x1]) {
     case 'P':
-      if ((Y1 == 1) && (point.board[y2][x2] == ' ') && (y2 == 2 || y2 == 3) && (x1 == x2) && (input[2] == '-')) {
+      if ((Y1 == 1) && (point.board[y2][x2] == ' ') && (y2 == 2 || y2 == 3) && 
+          (x1 == x2) && (input[2] == '-') && (point.board[Y1+1][x2] == ' ')) {
         return 1; //первый ход пешки
       } 
       if ((y2 - Y1 == 1) && (x1 == x2) && (point.board[y2][x2] = ' ') && (input[2] == '-')) {
@@ -186,7 +187,8 @@ int black_figure() {
   }
   switch (point.board[Y1][x1]) {
     case 'p':
-      if ((Y1 == 6) && (point.board[y2][x2] == ' ') && (y2 == 5 || y2 == 4) && (x1 == x2) && (input[2] == '-')) {
+      if ((Y1 == 6) && (point.board[y2][x2] == ' ') && (y2 == 5 || y2 == 4) &&
+          (x1 == x2) && (input[2] == '-') && (point.board[Y1 - 1][x2] == ' ')) {
         return 1; //первый ход пешки
       } 
       if ((Y1 - y2 == 1) && (x1 == x2) && (point.board[y2][x2] = ' ') && (input[2] == '-')) {
