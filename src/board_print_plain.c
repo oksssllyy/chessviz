@@ -1,6 +1,7 @@
 #ifndef BOARD_PRINT_PLAIN_C
 #define BOARD_PRINT_PLAIN_C
 #include "board_print_plain.h"
+#include <stdio.h>
 
 void make_board() {
 
@@ -73,23 +74,21 @@ void make_board() {
   for (i = 0; i < 8; i++) {
     point.board[6][i] = 'p';
   }
-
-  print_board(point);
 }
 
 void print_board() {
 
-  make_board();
+  char letter[8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
-  for (size_t i = 0; i < 8; i++) {
-    printf("%ld ", i + 1);
-    for (size_t j = 0; j < 8; j++) {
+  for (int i = 7; i >= 0; i--) {
+    printf("%d ", i + 1);
+    for (int j = 0; j < 8; j++) {
       printf("[%c] ", point.board[i][j]);
     }
     printf("\n");
   }
 
-  for (size_t i = 0; i < 8; i++) {
+  for (int i = 0; i < 8; i++) {
     printf("   %c", letter[i]);
   }
 
