@@ -121,10 +121,7 @@ int white_figure() {
       }
       break;
     case 'R':
-      if ((x1 == x2) && (Y1 > y2 || Y1 < y2)) {
-        return 1;
-      }
-      if ((Y1 == y2) && (x1 > x2 || x1 < x2)) {
+      if (check_x() || check_y()) {
         return 1;
       }
       break;
@@ -202,10 +199,7 @@ int black_figure() {
       }
       break;
     case 'r':
-      if ((x1 == x2) && (Y1 > y2 || Y1 < y2)) {
-        return 1;
-      }
-      if ((Y1 == y2) && (x1 > x2 || x1 < x2)) {
+      if (check_x() || check_y()) {
         return 1;
       }
       break;
