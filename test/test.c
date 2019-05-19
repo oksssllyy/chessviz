@@ -904,27 +904,27 @@ CTEST(moving, movebishop) {
   /*Ходы по диагонали*/
   strcpy(input, "E5-B8");
   charTOint(input, 1);
-  point.board[y2+1][x2-1] = 'p';
+  point.board[Y1+1][x1-1] = 'p';
   int c5 = white_figure();
-  point.board[y2+1][x2-1] = ' ';
+  point.board[Y1+1][x1-1] = ' ';
   
   strcpy(input, "E5-H2");
   charTOint(input, 1);
-  point.board[y2-1][x2+1] = 'p';
+  point.board[Y1-1][x1+1] = 'p';
   int c6 = white_figure();
-  point.board[y2-1][x2+1] = ' ';
+  point.board[Y1-1][x1+1] = ' ';
   
   strcpy(input, "E5-B2");
   charTOint(input, 1);
-  point.board[y2-2][x2-2] = 'p';
+  point.board[Y1-2][x1-2] = 'p';
   int c7 = white_figure();
-  point.board[y2-2][x2-2] = ' ';
+  point.board[Y1-2][x1-2] = ' ';
   
   strcpy(input, "E5-G7");
   charTOint(input, 1);
-  point.board[y2+1][x2+1] = 'p';
+  point.board[Y1+2][x1+2] = 'p';
   int c8 = white_figure();
-  point.board[y2+1][x2+1] = ' ';
+  point.board[Y1+2][x1+2] = ' ';
 
   /*Верные ходы*/
   strcpy(input, "E5-C7");
@@ -1014,27 +1014,27 @@ CTEST(moving, movebishop) {
   /*Ходы по диагонали*/
   strcpy(input, "e5-b8");
   charTOint(input, 2);
-  point.board[y2+1][x2-1] = 'P';
+  point.board[Y1+1][x1-1] = 'P';
   int c26 = black_figure();
-  point.board[y2+1][x2-1] = ' ';
+  point.board[Y1+1][x1-1] = ' ';
   
   strcpy(input, "e5-h2");
   charTOint(input, 2);
-  point.board[y2-1][x2+1] = 'P';
+  point.board[Y1-1][x1+1] = 'P';
   int c27 = black_figure();
-  point.board[y2-1][x2+1] = ' ';
+  point.board[Y1-1][x1+1] = ' ';
   
   strcpy(input, "e5-b2");
   charTOint(input, 2);
-  point.board[y2-2][x2-2] = 'P';
+  point.board[Y1-1][x1-1] = 'P';
   int c28 = black_figure();
-  point.board[y2-2][x2-2] = ' ';
+  point.board[Y1-1][x1-1] = ' ';
   
   strcpy(input, "e5-g7");
   charTOint(input, 2);
-  point.board[y2+1][x2+1] = 'P';
+  point.board[Y1+1][x1+1] = 'P';
   int c29 = black_figure();
-  point.board[y2+1][x2+1] = ' ';
+  point.board[Y1+1][x1+1] = ' ';
 
   /*Верные ходы*/
   strcpy(input, "e5-c7");
