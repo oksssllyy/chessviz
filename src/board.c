@@ -331,13 +331,16 @@ int check_d() {
       return 1;
     }
     if (x2 < x1) {
-      for (int i = x1 - 1; i > x2; i--) {
-        for (int j = Y1 - 1; j > y2; j--) {
+      for (int j = Y1 - 1; j > y2; j--) {
+        for (int i = x1 - 1; i > x2; i--) {
           if (point.board[j][i] == ' ') {
             break;
           }
           return 0;
         }
+      }
+      if (point.board[Y1-2][x1-2] != ' ' && input[2] == '-'){
+        return 0;
       }
       return 1;
     }
