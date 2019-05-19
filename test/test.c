@@ -965,7 +965,7 @@ CTEST(moving, movebishop) {
   int c17 = white_figure();
 
   /*Ходы взятия чужих фигур*/
-    strcpy(input, "E5xC7");
+  strcpy(input, "E5xC7");
   charTOint(input, 1);
   point.board[y2][x2] = 'p';
   int c18 = white_figure();
@@ -1187,4 +1187,438 @@ CTEST(moving, movebishop) {
   ASSERT_EQUAL(exp40, c40);
   ASSERT_EQUAL(exp41, c41);
   ASSERT_EQUAL(exp42, c42);
+}
+
+CTEST(moving, queen) {
+  /*Ходы белой фигуры*/
+  /*Ходы по вертикали*/
+  strcpy(input, "E5-E8");
+  charTOint(input, 1);
+  point.board[Y1][x1] = 'Q';
+  int c1 = white_figure();
+
+  strcpy(input, "E5-E2");
+  charTOint(input, 1);
+  int c2 = white_figure();
+
+  strcpy(input, "E5-E7");
+  charTOint(input, 1);
+  point.board[Y1+1][x2] = 'n';
+  int c3 = white_figure();
+  point.board[Y1+1][x2] = ' ';
+
+  strcpy(input, "E5-E2");
+  charTOint(input, 1);
+  point.board[Y1-1][x2] = 'n';
+  int c4 = white_figure();
+  point.board[Y1-1][x2] = ' ';
+
+  /*Ходы по горизонтали*/
+  strcpy(input, "E5-A5");
+  charTOint(input, 1);
+  int c5 = white_figure();
+
+  strcpy(input, "E5-H5");
+  charTOint(input, 1);
+  int c6 = white_figure();
+
+  strcpy(input, "E5-A5");
+  charTOint(input, 1);
+  point.board[y2][x2+1] = 'r';
+  int c7 = white_figure();
+  point.board[y2][x2+1] = ' ';
+
+  strcpy(input, "E5-H5");
+  charTOint(input, 1);
+  point.board[y2][x2-1] = 'r';
+  int c8 = white_figure();
+  point.board[y2][x2-1] = ' ';
+
+  /*Ходы по диагонали(ходы через фигуру)*/
+  strcpy(input, "E5-B8");
+  charTOint(input, 1);
+  point.board[Y1+1][x1-1] = 'p';
+  int c9 = white_figure();
+  point.board[Y1+1][x1-1] = ' ';
+  
+  strcpy(input, "E5-H2");
+  charTOint(input, 1);
+  point.board[Y1-1][x1+1] = 'p';
+  int c10 = white_figure();
+  point.board[Y1-1][x1+1] = ' ';
+  
+  strcpy(input, "E5-B2");
+  charTOint(input, 1);
+  point.board[Y1-2][x1-2] = 'p';
+  int c11 = white_figure();
+  point.board[Y1-2][x1-2] = ' ';
+  
+  strcpy(input, "E5-G7");
+  charTOint(input, 1);
+  point.board[Y1+2][x1+2] = 'p';
+  int c12 = white_figure();
+  point.board[Y1+2][x1+2] = ' ';
+
+  /*Ходы по диагонали(верные ходы)*/
+  strcpy(input, "E5-C7");
+  charTOint(input, 1);
+  int c13 = white_figure();
+  
+  strcpy(input, "E5-G3");
+  charTOint(input, 1);
+  int c14 = white_figure();
+  
+  strcpy(input, "E5-G7");
+  charTOint(input, 1);
+  int c15 = white_figure();
+
+  strcpy(input, "E5-C3");
+  charTOint(input, 1);
+  int c16 = white_figure();
+
+  /*Неправильные ходы*/
+  strcpy(input, "E5-C4");
+  charTOint(input, 1);
+  int c17 = white_figure();
+  
+  strcpy(input, "E5-C6");
+  charTOint(input, 1);
+  int c18 = white_figure();
+  
+  strcpy(input, "E5-G4");
+  charTOint(input, 1);
+  int c19 = white_figure();
+  
+  strcpy(input, "E5-G6");
+  charTOint(input, 1);
+  int c20 = white_figure();
+
+  strcpy(input, "E5-G9");
+  charTOint(input, 1);
+  int c21 = white_figure();
+
+  /*Ходы взятия чужих фигур*/
+  strcpy(input, "E5xE7");
+  charTOint(input, 1);
+  point.board[y2][x2] = 'p';
+  int c22 = white_figure();
+  point.board[y2][x2] = ' ';
+  
+  strcpy(input, "E5xE2");
+  charTOint(input, 1);
+  point.board[y2][x2] = 'p';
+  int c23 = white_figure();
+  point.board[y2][x2] = ' ';
+
+  strcpy(input, "E5xB5");
+  charTOint(input, 1);
+  point.board[y2][x2] = 'p';
+  int c24 = white_figure();
+  point.board[y2][x2] = ' ';
+
+  strcpy(input, "E5xH5");
+  charTOint(input, 1);
+  point.board[y2][x2] = 'p';
+  int c25 = white_figure();
+  point.board[y2][x2] = ' ';
+
+  strcpy(input, "E5xC7");
+  charTOint(input, 1);
+  point.board[y2][x2] = 'p';
+  int c26 = white_figure();
+  point.board[y2][x2] = ' ';
+  
+  strcpy(input, "E5xG3");
+  charTOint(input, 1);
+  point.board[y2][x2] = 'n';
+  int c27 = white_figure();
+  point.board[y2][x2] = ' ';
+  
+  strcpy(input, "E5xG7");
+  charTOint(input, 1);
+  point.board[y2][x2] = 'q';
+  int c28 = white_figure();
+  point.board[y2][x2] = ' ';
+
+  strcpy(input, "E5xC3");
+  charTOint(input, 1);
+  point.board[y2][x2] = 'r';
+  int c29 = white_figure();
+  point.board[y2][x2] = ' ';
+  point.board[Y1][x1] = ' ';
+
+  /*Ходы чёрной фигуры*/
+  /*Ходы по вертикали*/
+  strcpy(input, "e5-e8");
+  charTOint(input, 2);
+  point.board[Y1][x1] = 'q';
+  int c30 = black_figure();
+
+  strcpy(input, "e5-e2");
+  charTOint(input, 2);
+  int c31 = black_figure();
+
+  strcpy(input, "e5-e7");
+  charTOint(input, 2);
+  point.board[Y1+1][x2] = 'N';
+  int c32 = black_figure();
+  point.board[Y1+1][x2] = ' ';
+
+  strcpy(input, "e5-e2");
+  charTOint(input, 2);
+  point.board[Y1-1][x2] = 'N';
+  int c33 = black_figure();
+  point.board[Y1-1][x2] = ' ';
+
+  /*Ходы по горизонтали*/
+  strcpy(input, "e5-a5");
+  charTOint(input, 2);
+  int c34 = black_figure();
+
+  strcpy(input, "e5-h5");
+  charTOint(input, 2);
+  int c35 = black_figure();
+
+  strcpy(input, "e5-a5");
+  charTOint(input, 2);
+  point.board[y2][x2+1] = 'R';
+  int c36 = black_figure();
+  point.board[y2][x2+1] = ' ';
+
+  strcpy(input, "e5-h5");
+  charTOint(input, 2);
+  point.board[y2][x2-1] = 'R';
+  int c37 = black_figure();
+  point.board[y2][x2-1] = ' ';
+
+  /*Ходы по диагонали*/
+  strcpy(input, "e5-b8");
+  charTOint(input, 2);
+  point.board[Y1+1][x1-1] = 'P';
+  int c38 = black_figure();
+  point.board[Y1+1][x1-1] = ' ';
+  
+  strcpy(input, "e5-h2");
+  charTOint(input, 2);
+  point.board[Y1-1][x1+1] = 'P';
+  int c39 = black_figure();
+  point.board[Y1-1][x1+1] = ' ';
+  
+  strcpy(input, "e5-b2");
+  charTOint(input, 2);
+  point.board[Y1-1][x1-1] = 'P';
+  int c40 = black_figure();
+  point.board[Y1-1][x1-1] = ' ';
+  
+  strcpy(input, "e5-g7");
+  charTOint(input, 2);
+  point.board[Y1+1][x1+1] = 'P';
+  int c41 = black_figure();
+  point.board[Y1+1][x1+1] = ' ';
+
+  /*Верные ходы*/
+  strcpy(input, "e5-c7");
+  charTOint(input, 2);
+  int c42 = black_figure();
+  
+  strcpy(input, "e5-g3");
+  charTOint(input, 2);
+  int c43 = black_figure();
+  
+  strcpy(input, "e5-g7");
+  charTOint(input, 2);
+  int c44 = black_figure();
+
+  strcpy(input, "e5-c3");
+  charTOint(input, 2);
+  int c45 = black_figure();
+
+  /*Неправильные ходы*/
+  strcpy(input, "e5-c4");
+  charTOint(input, 2);
+  int c46 = black_figure();
+  
+  strcpy(input, "e5-c6");
+  charTOint(input, 2);
+  int c47 = black_figure();
+  
+  strcpy(input, "e5-g4");
+  charTOint(input, 2);
+  int c48 = black_figure();
+  
+  strcpy(input, "e5-g6");
+  charTOint(input, 2);
+  int c49 = black_figure();
+
+  strcpy(input, "e5-g9");
+  charTOint(input, 2);
+  int c50 = black_figure();
+
+  /*Ходы взятия чужих фигур*/
+  strcpy(input, "e5xe7");
+  charTOint(input, 2);
+  point.board[y2][x2] = 'P';
+  int c51 = black_figure();
+  point.board[y2][x2] = ' ';
+  
+  strcpy(input, "e5xe2");
+  charTOint(input, 2);
+  point.board[y2][x2] = 'P';
+  int c52 = black_figure();
+  point.board[y2][x2] = ' ';
+
+  strcpy(input, "e5xb5");
+  charTOint(input, 2);
+  point.board[y2][x2] = 'P';
+  int c53 = black_figure();
+  point.board[y2][x2] = ' ';
+
+  strcpy(input, "e5xh5");
+  charTOint(input, 2);
+  point.board[y2][x2] = 'P';
+  int c54 = black_figure();
+  point.board[y2][x2] = ' ';
+
+  strcpy(input, "e5xc7");
+  charTOint(input, 2);
+  point.board[y2][x2] = 'P';
+  int c55 = black_figure();
+  point.board[y2][x2] = ' ';
+  
+  strcpy(input, "e5xg3");
+  charTOint(input, 2);
+  point.board[y2][x2] = 'N';
+  int c56 = black_figure();
+  point.board[y2][x2] = ' ';
+  
+  strcpy(input, "e5xg7");
+  charTOint(input, 2);
+  point.board[y2][x2] = 'Q';
+  int c57 = black_figure();
+  point.board[y2][x2] = ' ';
+
+  strcpy(input, "e5xc3");
+  charTOint(input, 2);
+  point.board[y2][x2] = 'R';
+  int c58 = black_figure();
+  point.board[y2][x2] = ' ';
+  point.board[Y1][x1] = ' ';
+
+  const int exp1 = 1;
+  const int exp2 = 1;
+  const int exp3 = 0;
+  const int exp4 = 0;
+  const int exp5 = 1;
+  const int exp6 = 1;
+  const int exp7 = 0;
+  const int exp8 = 0;
+  const int exp9 = 0;
+  const int exp10 = 0;
+  const int exp11 = 0;
+  const int exp12 = 0;
+  const int exp13 = 1;
+  const int exp14 = 1;
+  const int exp15 = 1;
+  const int exp16 = 1;
+  const int exp17 = 0;
+  const int exp18 = 0;
+  const int exp19 = 0;
+  const int exp20 = 0;
+  const int exp21 = 0;
+  const int exp22 = 1;
+  const int exp23 = 1;
+  const int exp24 = 1;
+  const int exp25 = 1;
+  const int exp26 = 1;
+  const int exp27 = 1;
+  const int exp28 = 1;
+  const int exp29 = 1;
+  const int exp30 = 1;
+  const int exp31 = 1;
+  const int exp32 = 0;
+  const int exp33 = 0;
+  const int exp34 = 1;
+  const int exp35 = 1;
+  const int exp36 = 0;
+  const int exp37 = 0;
+  const int exp38 = 0;
+  const int exp39 = 0;
+  const int exp40 = 0;
+  const int exp41 = 0;
+  const int exp42 = 1;
+  const int exp43 = 1;
+  const int exp44 = 1;
+  const int exp45 = 1;
+  const int exp46 = 0;
+  const int exp47 = 0;
+  const int exp48 = 0;
+  const int exp49 = 0;
+  const int exp50 = 0;
+  const int exp51 = 1;
+  const int exp52 = 1;
+  const int exp53 = 1;
+  const int exp54 = 1;
+  const int exp55 = 1;
+  const int exp56 = 1;
+  const int exp57 = 1;
+  const int exp58 = 1;
+
+  ASSERT_EQUAL(exp1, c1);
+  ASSERT_EQUAL(exp2, c2);
+  ASSERT_EQUAL(exp3, c3);
+  ASSERT_EQUAL(exp4, c4);  
+  ASSERT_EQUAL(exp5, c5);
+  ASSERT_EQUAL(exp6, c6);
+  ASSERT_EQUAL(exp7, c7);
+  ASSERT_EQUAL(exp8, c8);
+  ASSERT_EQUAL(exp9, c9);
+  ASSERT_EQUAL(exp10, c10);
+  ASSERT_EQUAL(exp11, c11);
+  ASSERT_EQUAL(exp12, c12);
+  ASSERT_EQUAL(exp13, c13);
+  ASSERT_EQUAL(exp14, c14);
+  ASSERT_EQUAL(exp15, c15);
+  ASSERT_EQUAL(exp16, c16);
+  ASSERT_EQUAL(exp17, c17);
+  ASSERT_EQUAL(exp18, c18);
+  ASSERT_EQUAL(exp19, c19);
+  ASSERT_EQUAL(exp20, c20);
+  ASSERT_EQUAL(exp21, c21);
+  ASSERT_EQUAL(exp22, c22);
+  ASSERT_EQUAL(exp23, c23);
+  ASSERT_EQUAL(exp24, c24);
+  ASSERT_EQUAL(exp25, c25);
+  ASSERT_EQUAL(exp26, c26);
+  ASSERT_EQUAL(exp27, c27);
+  ASSERT_EQUAL(exp28, c28);
+  ASSERT_EQUAL(exp29, c29);
+  ASSERT_EQUAL(exp30, c30);
+  ASSERT_EQUAL(exp31, c31);
+  ASSERT_EQUAL(exp32, c32);
+  ASSERT_EQUAL(exp33, c33);
+  ASSERT_EQUAL(exp34, c34);
+  ASSERT_EQUAL(exp35, c35);
+  ASSERT_EQUAL(exp36, c36);  
+  ASSERT_EQUAL(exp37, c37);
+  ASSERT_EQUAL(exp38, c38);
+  ASSERT_EQUAL(exp39, c39);
+  ASSERT_EQUAL(exp40, c40);
+  ASSERT_EQUAL(exp41, c41);
+  ASSERT_EQUAL(exp42, c42);
+  ASSERT_EQUAL(exp43, c43);
+  ASSERT_EQUAL(exp44, c44);
+  ASSERT_EQUAL(exp45, c45);
+  ASSERT_EQUAL(exp46, c46);
+  ASSERT_EQUAL(exp47, c47);
+  ASSERT_EQUAL(exp48, c48);
+  ASSERT_EQUAL(exp49, c49);
+  ASSERT_EQUAL(exp50, c50);
+  ASSERT_EQUAL(exp51, c51);
+  ASSERT_EQUAL(exp52, c52);
+  ASSERT_EQUAL(exp53, c53);
+  ASSERT_EQUAL(exp54, c54);
+  ASSERT_EQUAL(exp55, c55);
+  ASSERT_EQUAL(exp56, c56);
+  ASSERT_EQUAL(exp57, c57);
+  ASSERT_EQUAL(exp58, c58);
 }
