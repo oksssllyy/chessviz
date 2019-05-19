@@ -63,28 +63,28 @@ void input_data(int side) {
         break;
       }
     }
-    printf("Введите ход: ");
+    printf("Введите ход: 1");
   }
 }
 
 int charTOint(char input[6], int side) {
-  if ((input[0] >= 'A' && input[0] < 'S') && (input[3] >= 'A' && input[3] < 'S') && side == 1) {
+  if ((input[0] >= 'A' && input[0] < 'S') && (input[3] >= 'A' && input[3] < 'S') && 
+  side == 1 && ((input[1] >= '1') && (input[4] <= '8'))) {
     x1 = (int)input[0] - 'A';
     Y1 = (int)input[1] - '1';
     x2 = (int)input[3] - 'A';
     y2 = (int)input[4] - '1';
+    return 1;
   } 
-  else if ((input[0] >= 'a' && input[0] < 's') && (input[3] >= 'a' && input[3] < 's') && side == 2) {
+  if ((input[0] >= 'a' && input[0] < 's') && (input[3] >= 'a' && input[3] < 's') &&
+  side == 2 && ((input[1] >= '1') && (input[4] <= '8'))) {
     x1 = (int)input[0] - 'a';
     Y1 = (int)input[1] - '1';
     x2 = (int)input[3] - 'a';
     y2 = (int)input[4] - '1';
+    return 1;
   }
 
-  if ((x1 >= 0) && (x1 < 8) && (Y1 >= 0) && (Y1 < 8) && 
-      (x2 >= 0) && (x2 < 8) && (y2 >= 0) && (y2 < 8)) {
-    return 1;
-  } 
   return 0;
 }
 
