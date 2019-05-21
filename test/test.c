@@ -1,6 +1,6 @@
-#include "../src/board.h"
-#include "../src/board_print_plain.h"
-#include "../thirdparty/ctest.h"
+#include "board.h"
+#include "board_print_plain.h"
+#include "ctest.h"
 #include <stdio.h>
 #include <string.h>
 
