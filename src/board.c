@@ -63,7 +63,7 @@ void input_data(int side) {
         break;
       }
     }
-    printf("Введите ход: 1");
+    printf("Введите ход: ");
   }
 }
 
@@ -108,6 +108,10 @@ int white_figure() {
     case 'P':
       if ((Y1 == 1) && (point.board[y2][x2] == ' ') && (y2 == 2 || y2 == 3) && 
           (x1 == x2) && (input[2] == '-') && (point.board[Y1+1][x2] == ' ')) {
+        return 1; //первый ход пешки
+      }
+      if ((Y1 == 1) && (point.board[y2][x2] != ' ') && (y2 == 2) && 
+          (x1 < x2) && (input[2] == 'x')) {
         return 1; //первый ход пешки
       } 
       if ((y2 - Y1 == 1) && (x1 == x2) && (point.board[y2][x2] = ' ') && (input[2] == '-')) {
@@ -188,6 +192,9 @@ int black_figure() {
           (x1 == x2) && (input[2] == '-') && (point.board[Y1 - 1][x2] == ' ')) {
         return 1; //первый ход пешки
       } 
+      if ((Y1 == 6) && (point.board[y2][x2] != ' ') && (y2 == 5) && 
+          (x1 > x2) && (input[2] == 'x')) {
+        return 1; //первый ход пешки      
       if ((Y1 - y2 == 1) && (x1 == x2) && (point.board[y2][x2] = ' ') && (input[2] == '-')) {
         pawn_transformation();
         return 1; 
