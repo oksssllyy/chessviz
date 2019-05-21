@@ -68,23 +68,23 @@ void input_data(int side) {
 }
 
 int charTOint(char input[6], int side) {
-  if ((input[0] >= 'A' && input[0] < 'S') && (input[3] >= 'A' && input[3] < 'S') && side == 1) {
+  if ((input[0] >= 'A' && input[0] < 'S') && (input[3] >= 'A' && input[3] < 'S') && 
+  side == 1 && ((input[1] >= '1') && (input[4] <= '8'))) {
     x1 = (int)input[0] - 'A';
     Y1 = (int)input[1] - '1';
     x2 = (int)input[3] - 'A';
     y2 = (int)input[4] - '1';
+    return 1;
   } 
-  else if ((input[0] >= 'a' && input[0] < 's') && (input[3] >= 'a' && input[3] < 's') && side == 2) {
+  if ((input[0] >= 'a' && input[0] < 's') && (input[3] >= 'a' && input[3] < 's') &&
+  side == 2 && ((input[1] >= '1') && (input[4] <= '8'))) {
     x1 = (int)input[0] - 'a';
     Y1 = (int)input[1] - '1';
     x2 = (int)input[3] - 'a';
     y2 = (int)input[4] - '1';
+    return 1;
   }
 
-  if ((x1 >= 0) && (x1 < 8) && (Y1 >= 0) && (Y1 < 8) && 
-      (x2 >= 0) && (x2 < 8) && (y2 >= 0) && (y2 < 8)) {
-    return 1;
-  } 
   return 0;
 }
 
@@ -106,7 +106,12 @@ int white_figure() {
   }
   switch (point.board[Y1][x1]) {
     case 'P':
-      if ((Y1 == 1) && (point.board[y2][x2] == ' ') && (y2 == 2 || y2 == 3) && (x1 == x2) && (input[2] == '-')) {
+      if ((Y1 == 1) && (point.board[y2][x2] == ' ') && (y2 == 2 || y2 == 3) && 
+          (x1 == x2) && (input[2] == '-') && (point.board[Y1+1][x2] == ' ')) {
+        return 1; //первый ход пешки
+      }
+      if ((Y1 == 1) && (point.board[y2][x2] != ' ') && (y2 == 2) && 
+          (x1 < x2) && (input[2] == 'x')) {
         return 1; //первый ход пешки
       } 
       if ((y2 - Y1 == 1) && (x1 == x2) && (point.board[y2][x2] = ' ') && (input[2] == '-')) {
@@ -120,10 +125,7 @@ int white_figure() {
       }
       break;
     case 'R':
-      if ((x1 == x2) && (Y1 > y2 || Y1 < y2)) {
-        return 1;
-      }
-      if ((Y1 == y2) && (x1 > x2 || x1 < x2)) {
+      if (check_x() || check_y()) {
         return 1;
       }
       break;
@@ -186,9 +188,13 @@ int black_figure() {
   }
   switch (point.board[Y1][x1]) {
     case 'p':
-      if ((Y1 == 6) && (point.board[y2][x2] == ' ') && (y2 == 5 || y2 == 4) && (x1 == x2) && (input[2] == '-')) {
+      if ((Y1 == 6) && (point.board[y2][x2] == ' ') && (y2 == 5 || y2 == 4) &&
+          (x1 == x2) && (input[2] == '-') && (point.board[Y1 - 1][x2] == ' ')) {
         return 1; //первый ход пешки
       } 
+      if ((Y1 == 6) && (point.board[y2][x2] != ' ') && (y2 == 5) && 
+          (x1 > x2) && (input[2] == 'x')) {
+        return 1; //первый ход пешки      
       if ((Y1 - y2 == 1) && (x1 == x2) && (point.board[y2][x2] = ' ') && (input[2] == '-')) {
         pawn_transformation();
         return 1; 
@@ -200,10 +206,7 @@ int black_figure() {
       }
       break;
     case 'r':
-      if ((x1 == x2) && (Y1 > y2 || Y1 < y2)) {
-        return 1;
-      }
-      if ((Y1 == y2) && (x1 > x2 || x1 < x2)) {
+      if (check_x() || check_y()) {
         return 1;
       }
       break;
@@ -335,13 +338,16 @@ int check_d() {
       return 1;
     }
     if (x2 < x1) {
-      for (int i = x1 - 1; i > x2; i--) {
-        for (int j = Y1 - 1; j > y2; j--) {
+      for (int j = Y1 - 1; j > y2; j--) {
+        for (int i = x1 - 1; i > x2; i--) {
           if (point.board[j][i] == ' ') {
             break;
           }
           return 0;
         }
+      }
+      if (point.board[Y1-2][x1-2] != ' ' && input[2] == '-'){
+        return 0;
       }
       return 1;
     }
