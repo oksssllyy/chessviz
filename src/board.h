@@ -1,28 +1,28 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-  void information();
+void information();
 
-  int step(int side);
+int step(int side);
 
-  void input_data(int side); //side: 1 - белые, 2 - чёрные фигуры;
+void input_data(int side); // side: 1 - белые, 2 - чёрные фигуры;
 
-  int charTOint(char input[6], int side);
+int charTOint(char input[6], int side);
 
-  void move_figure();
+void move_figure();
 
-  int white_figure();
+int white_figure();
 
-  int check_x();
+int check_x();
 
-  int check_y();
+int check_y();
 
-  int check_d(); //check side and main diagonals
+int check_d(); // check side and main diagonals
 
-  int black_figure();
+int black_figure();
 
-  int checkwin(int status);
+int checkwin(int status);
 
-  void pawn_transformation();
+void pawn_transformation();
 
-#endif //BOARD_H
+#endif // BOARD_H

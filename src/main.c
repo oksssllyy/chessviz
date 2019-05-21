@@ -1,7 +1,6 @@
-#include "board_print_plain.h"
 #include "board.h"
+#include "board_print_plain.h"
 #include <stdio.h>
-
 
 int main() {
   int status = 0;
@@ -22,7 +21,6 @@ int main() {
       break;
     }
 
-
     printf("\nХод чёрных фигур: ");
     input_data(2);
     move_figure();
@@ -36,5 +34,4 @@ int main() {
   printf("\n\n   Победил %d игрок!!!\n", status);
 
   return 0;
-
 }

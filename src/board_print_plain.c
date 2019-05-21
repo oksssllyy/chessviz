@@ -10,26 +10,26 @@ void make_board() {
   for (i = 0; i < 8; i++) {
     char cell = ' ';
     switch (i) {
-      case 0:
-      case 7:
-        cell = 'R';
-        break;
-      case 1:
-      case 6:
-        cell = 'N';
-        break;
-      case 2:
-      case 5:
-        cell = 'B';
-        break;
-      case 3:
-        cell = 'Q';
-        break;
-      case 4:
-        cell = 'K';
-        break;
-      default:
-        break;
+    case 0:
+    case 7:
+      cell = 'R';
+      break;
+    case 1:
+    case 6:
+      cell = 'N';
+      break;
+    case 2:
+    case 5:
+      cell = 'B';
+      break;
+    case 3:
+      cell = 'Q';
+      break;
+    case 4:
+      cell = 'K';
+      break;
+    default:
+      break;
     }
     point.board[0][i] = cell;
   }
@@ -47,26 +47,26 @@ void make_board() {
   for (i = 0; i < 8; i++) {
     char cell = ' ';
     switch (i) {
-      case 0:
-      case 7:
-        cell = 'r';
-        break;
-      case 1:
-      case 6:
-        cell = 'n';
-        break;
-      case 2:
-      case 5:
-        cell = 'b';
-        break;
-      case 3:
-        cell = 'q';
-        break;
-      case 4:
-        cell = 'k';
-        break;
-      default:
-        break;
+    case 0:
+    case 7:
+      cell = 'r';
+      break;
+    case 1:
+    case 6:
+      cell = 'n';
+      break;
+    case 2:
+    case 5:
+      cell = 'b';
+      break;
+    case 3:
+      cell = 'q';
+      break;
+    case 4:
+      cell = 'k';
+      break;
+    default:
+      break;
     }
     point.board[7][i] = cell;
   }
@@ -95,4 +95,4 @@ void print_board() {
   printf("\n");
 }
 
-#endif //BOARD_PRINT_PLAIN_C
+#endif // BOARD_PRINT_PLAIN_C

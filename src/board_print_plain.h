@@ -11,4 +11,4 @@ void make_board();
 
 void print_board();
 
-#endif //BOARD_PRINT_PLAIN_H
+#endif // BOARD_PRINT_PLAIN_H
