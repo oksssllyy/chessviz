@@ -17,7 +17,7 @@ bin/chessviz-test: build/test/main.o build/test/test.o build/src/board.o build/s
 	gcc -Wall -Werror build/test/main.o build/test/test.o build/src/board.o build/src/board_print_plain.o -o bin/chessviz-test
 
 build/test/main.o: test/main.c
-	gcc -I thirdparty src -Wall -Werror -c test/main.c -o build/test/main.o
+	gcc -I thirdparty -I src -Wall -Werror -c test/main.c -o build/test/main.o
 
 build/test/test.o: test/test.c
 	gcc -I thirdparty -I src -Wall -Werror -c test/test.c -o build/test/test.o
