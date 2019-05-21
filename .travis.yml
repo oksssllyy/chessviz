@@ -1,5 +1,6 @@
 dist: xenial
 language: c
 compiler : gcc
-script: make && git ls-files src/ | xargs clang-format-6.0 -i && git diff --exit-code && bin/chessviz-test
+script: 
+ - make && git ls-files src/ | xargs clang-format-6.0 -i && git diff --exit-code && bin/chessviz-test
 
