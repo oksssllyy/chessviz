@@ -194,7 +194,8 @@ int black_figure() {
       } 
       if ((Y1 == 6) && (point.board[y2][x2] != ' ') && (y2 == 5) && 
           (x1 > x2) && (input[2] == 'x')) {
-        return 1; //первый ход пешки      
+        return 1; //первый ход пешки
+      }      
       if ((Y1 - y2 == 1) && (x1 == x2) && (point.board[y2][x2] = ' ') && (input[2] == '-')) {
         pawn_transformation();
         return 1; 
